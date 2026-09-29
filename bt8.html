@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 8</title>
+  </head>
+  <body>
+    <h2>Đăng nhập hệ thống</h2>
+    <form id="loginForm">
+      <label for="password">Mật khẩu:</label>
+      <input type="text" id="password" placeholder="Nhập mật khẩu đăng nhập" />
+      <br /><br />
+      <label for="role">Vai trò:</label>
+      <select id="role">
+        <option value="member">Thành viên</option>
+        <option value="editor">Biên tập viên</option>
+        <option value="admin">Quản trị viên</option>
+      </select>
+      <br /><br />
+      <button type="button" onclick="checkLogin()">Đăng nhập</button>
+      <h3>Kết quả:</h3>
+      <p id="result"></p>
+
+      <script>
+        //Mật khẩu đăng nhập mặc định vào hệ thống
+        const defaultPassword = "12345";
+
+        function checkLogin() {
+          const inputPassword = document.getElementById("password").value;
+          const userRole = document.getElementById("role").value;
+
+          //So sánh nghiêm ngặt === để tránh lỗi ép kiểu
+          if (inputPassword === defaultPassword) {
+            document.getElementById("result").textContent =
+              "Đăng nhập thành công! ";
+            //Rút dọn logic phân quyền
+            if (userRole === "admin") {
+              document.getElementById("result").textContent +=
+                "Chào mừng Quản trị viên.";
+            } else if (userRole === "editor") {
+              document.getElementById("result").textContent +=
+                "Chào mừng Biên tập viên.";
+            } else {
+              document.getElementById("result").textContent +=
+                "Chào mừng thành viên.";
+            }
+          } else {
+            document.getElementById("result").textContent =
+              "Mật khẩu sai! Vui lòng nhập lại.";
+          }
+        }
+      </script>
+    </form>
+  </body>
+</html>
